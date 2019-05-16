@@ -5,6 +5,9 @@ namespace TicTacToe
     class Program
     {
         public static string playerTurn = "X";
+        public static string winner;
+
+
         public static string[][] board = new string[][]
         {
             new string[] {" ", " ", " "},
@@ -19,16 +22,16 @@ namespace TicTacToe
                 DrawBoard();
                 GetInput();
 
-                switchplayer();
+                switchPlayer();
 
             } while (!CheckForWin() && !CheckForTie());
-
+            DrawBoard();
             // leave this command at the end so your program does not close automatically
             Console.ReadLine();
             
         }
 
-        private static void switchplayer()
+        private static void switchPlayer()
         {
             if (playerTurn == "X")
             {
@@ -61,20 +64,15 @@ namespace TicTacToe
             if (HorizontalWin())
             {
                 return true;
-                
             }
-            Console.WriteLine("You Win");
-
             if (VerticalWin())
             {
                 return true;
             }
-            Console.WriteLine("You Win");
             if (DiagonalWin())
             {
                 return true;
             }
-            Console.WriteLine("You Win");
             return false;
         }
 
@@ -87,27 +85,29 @@ namespace TicTacToe
                 board[0][2] != " " &&
                 board[1][0] != " " &&
                 board[1][1] != " " &&
-                board[1][2] != " " &&
+                board[1][2] != " " && 
                 board[2][0] != " " &&
                 board[2][1] != " " &&
                 board[2][2] != " ";
-
+            Console.WriteLine("Tie Game");
             return noWinner && allFilled;
-            Console.WriteLine("No Winner");
         }
         
         public static bool HorizontalWin()
         {
             if (board[0][0] == board[0][1] && board [0][1] == board[0][2] && board [0][0] != " ")
             {
+                Console.WriteLine("HorizontalWin");
                 return true;
             }
             if (board[1][0] == board[1][1] && board[1][1] == board[1][2] && board[1][0] != " ")
             {
+                Console.WriteLine("HorizontalWin");
                 return true;
             }
             if (board[2][0] == board[2][1] && board[2][1] == board[2][2] && board[2][0] != " ")
             {
+                Console.WriteLine("HorizontalWin");
                 return true;
             }
             return false;
@@ -117,28 +117,32 @@ namespace TicTacToe
         {
             if (board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] != " ")
             {
+                Console.WriteLine("VerticalWin");
                 return true;
             }
             if (board[0][1] == board[1][1] && board[1][1] == board[2][1] && board[0][1] != " ")
             {
+                Console.WriteLine("VerticalWin");
                 return true;
             }
             if (board[0][2] == board[1][2] && board[1][2] == board[2][2] && board[0][2] != " ")
             {
+                Console.WriteLine("VerticalWin");
                 return true;
             }
-
-            return false;
+             return false;
         }
 
         public static bool DiagonalWin()
         {
             if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != " ")
             {
+                Console.WriteLine("DiagonalWin");
                 return true;
             }
             if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != " ")
             {
+                Console.WriteLine("DiagonalWin");
                 return true;
             }
 
@@ -147,6 +151,7 @@ namespace TicTacToe
 
         public static void DrawBoard()
         {
+
             Console.WriteLine("  0 1 2");
             Console.WriteLine("0 " + String.Join("|", board[0]));
             Console.WriteLine("  -----");
