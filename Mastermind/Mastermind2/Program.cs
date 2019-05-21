@@ -8,9 +8,7 @@ namespace Mastermind2
 {
     class Program
     {
-        static int[] hint;
         static int tryCount = 0;
-        string[][] board;
         const int allowedAttempts = 4;
         const int codelength = 2;
         static string[] secret = new string[codelength];
@@ -57,7 +55,7 @@ namespace Mastermind2
                     Console.WriteLine("Invalid input; please try again.");
                     Console.WriteLine();
                 }
-            } while (tryCount < 4 && !isGameOver);
+            } while (tryCount < allowedAttempts && !isGameOver);
 
             Console.ReadLine();
         }

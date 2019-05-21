@@ -10,37 +10,27 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            /*Gradebook book = new Grades();
-            book.AddGrade(91);
-            book.AddGrade(89);
-            book.AddGrade(83.5f);
-            book.AddGrade(78);
-            book.AddGrade(98);
-            book.AddGrade(93);
-            book.AddGrade(79);
-            book.AddGrade(64);
-            book.AddGrade(32);
-            book.AddGrade(45);
-            book.AddGrade(67);
-            book.AddGrade(90);
-            book.AddGrade(58);
-            book.AddGrade(72);
-            book.AddGrade(100);
-            book.AddGrade(85);*/
+            Console.WriteLine("Please enter the student name: ");
+            string studentName = Console.ReadLine();
+            Console.WriteLine("Please input the Grades in one string separated by a space...example - 85 77 92:");
+            string gradesinput = Console.ReadLine();
+            string[] gradeArray = gradesinput.Split(' ');
+            int[] grades = new int[gradeArray.Length];
+            for(int i = 0; i< gradeArray.Length; i++)
+            {
+                grades[i] = Convert.ToInt32(gradeArray [i]);
+            }
 
-            Console.WriteLine("Please input the Grades:");
+            int highestGrade = grades.Max();
+            int lowestGrade = grades.Min();
+            double averageGrade = grades.Average();
 
-            Gradebook inputValues = new Grades();
-            inputValues.AddGrade(85);
-            inputValues.AddGrade(62);
-
-
-            GradeStatistics stats = inputValues.ComputeStatistics();
             //Console.WriteLine(stats.HighestGrade);
             //Console.WriteLine(stats.AverageGrade);
             //Console.WriteLine(stats.LowestGrade);
-            Console.WriteLine("The average for this person is {0} and the Highest grade he made is {1} and the Lowest is {2}. If you May please select any character to exit the program!", stats.AverageGrade, stats.HighestGrade, stats.LowestGrade);
-
+            //Console.WriteLine("The average for this person is {0} and the Highest grade he made is {1} and the Lowest is {2}. please select any character to exit the program!", stats.AverageGrade, stats.HighestGrade, stats.LowestGrade);
+            Console.WriteLine($"The average for this person is {averageGrade} and the Highest grade he made is {highestGrade} and the Lowest is {lowestGrade}. please select any character to exit the program!");
+            Console.ReadLine();
         }
     }
 }
