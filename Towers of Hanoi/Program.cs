@@ -29,6 +29,7 @@ public class Program
 
             PrintStacks();
 
+            Console.WriteLine("Please click 'Enter' to begin and after each stack selection");
             Console.WriteLine("Enter Starting Stack:");
             string start = Console.ReadLine();
 
@@ -42,12 +43,14 @@ public class Program
             else
             {
                 Console.WriteLine("Illegal move, try again!!!");
+                Console.ReadLine();
             }
 
         }
 
         PrintStacks();
         Console.WriteLine("You Won!!!");
+        Console.ReadLine();
     }
 
     public static bool GameOver()
@@ -98,5 +101,6 @@ public class Program
             }
             Console.WriteLine(letters[i] + ": " + String.Join("|", blocks));
         }
+        Console.ReadLine();
     }
 }
