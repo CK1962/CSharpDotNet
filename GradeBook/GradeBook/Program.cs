@@ -10,27 +10,51 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter the student name: ");
-            string studentName = Console.ReadLine();
-            Console.WriteLine("Please input the Grades in one string separated by a space...example - 85 77 92:");
-            string gradesinput = Console.ReadLine();
-            string[] gradeArray = gradesinput.Split(' ');
-            int[] grades = new int[gradeArray.Length];
-            for(int i = 0; i< gradeArray.Length; i++)
+            Dictionary<string, string> gradebook = new Dictionary<string, string>();
+
+            bool shouldContinue = true;
+            do
             {
-                grades[i] = Convert.ToInt32(gradeArray [i]);
+                Console.WriteLine("Please enter the student name (or 'quit'): ");
+                string studentName = Console.ReadLine();
+                if (studentName == "quit")
+                {
+                    shouldContinue = false;
+                }
+                else
+                {
+                    Console.WriteLine("Please input the Grades in one string separated by a space...example - 85 77 92:");
+
+                    string gradesInput = Console.ReadLine();
+
+                    gradebook.Add(studentName, gradesInput);
+                }
+            }
+            while (shouldContinue);
+
+
+            // process grades
+            foreach(var student in gradebook)
+            {
+                ComputedGrades(student.Key, student.Value);
+            }
+            Console.ReadLine();
+        }
+
+        private static void ComputedGrades(string studentName, string gradesInput)
+        {
+            string[] gradeArray = gradesInput.Split(' ');
+            int[] grades = new int[gradeArray.Length];
+            for (int i = 0; i < gradeArray.Length; i++)
+            {
+                grades[i] = Convert.ToInt32(gradeArray[i]);
             }
 
             int highestGrade = grades.Max();
             int lowestGrade = grades.Min();
             double averageGrade = grades.Average();
 
-            //Console.WriteLine(stats.HighestGrade);
-            //Console.WriteLine(stats.AverageGrade);
-            //Console.WriteLine(stats.LowestGrade);
-            //Console.WriteLine("The average for this person is {0} and the Highest grade he made is {1} and the Lowest is {2}. please select any character to exit the program!", stats.AverageGrade, stats.HighestGrade, stats.LowestGrade);
-            Console.WriteLine($"The average for this person is {averageGrade} and the Highest grade he made is {highestGrade} and the Lowest is {lowestGrade}. please select any character to exit the program!");
-            Console.ReadLine();
+            Console.WriteLine($"The average for {studentName} is {averageGrade} and the Highest grade is {highestGrade} and the Lowest grade is {lowestGrade}. please select any character to exit the program!");
         }
     }
 }
