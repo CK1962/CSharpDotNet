@@ -55,7 +55,7 @@ public class Program
 
     public static bool GameOver()
     {
-        if (stacks["b"].Count == 4 || stacks["c"].Count == 4)
+        if (stacks["c"].Count == 4)
             return true;
 
         return false;
