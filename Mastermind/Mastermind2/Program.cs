@@ -8,142 +8,127 @@ namespace Mastermind2
 {
     class Program
     {
+        static int[] hint;
+        static int tryCount = 0;
+        string[][] board;
+        const int allowedAttempts = 4;
+        const int codelength = 2;
+        static string[] secret = new string[codelength];
+        static string[] colorArray = new string[] { "red", "yellow", "blue" };
+
         static void Main(string[] args)
         {
-            string name;
+            Console.WriteLine("Welcome to Mastermind!");
 
-            Console.WriteLine("**************Let's play Master-Mind**************");
-            Console.WriteLine();
-            Console.Write("Please enter your name: ");
-            name = Console.ReadLine();
-            Console.WriteLine("Welcome {0}. Have fun!! ", name);
-
-            int numberCount = 0;
-            int Red = 0;
-            int Yellow = 1;
-            int Blue = 2;
-
-            int digitNumber = GetRandomNumberCount(numberCount);
-            Console.Write(digitNumber + " it is. Let's play.");
-            Console.WriteLine();
-            int[] PCArray = GenerateRandomNumbers(digitNumber);
-
-            Console.WriteLine("A " + digitNumber + "-colors have been chosen.");
-            Console.WriteLine("    ******");
-
-            int attempts = digitNumber;
-
-            Console.WriteLine("Enter your guess ({0} guesses remaining)", attempts);
-            int remaining = attempts;
-
-            for (int i = 0; i < attempts; i++)
+            // pick secret answer
+            Random rnd = new Random();
+            for (int i = 0; i < 2; i++)
             {
-                int[] userArray = GetUserGuess(digitNumber);
-                int hits = CountHits(PCArray, userArray, attempts);
-
-                if ((hits != PCArray.Length) && (attempts > 0))
-                {
-                    remaining--;
-                    Console.WriteLine("Enter your guess ({0} guesses remaining)", remaining);
-                }
-                else if ((attempts < 1))
-                {
-                    Console.WriteLine("Oh no {0}! You couldn't guess the right colors.", name);
-                    Console.WriteLine("The correct colors are: ");
-                    for (int j = 0; j < PCArray.Length; j++)
-                    {
-                        Console.Write(PCArray[j] + " ");
-                    }
-                    Console.WriteLine("Would you like to play again (Y/N)? ");
-                }
-                else if (hits == PCArray.Length)
-                {
-                    attempts = 0;
-                    Console.WriteLine("You win {0}!", name);
-                    Console.WriteLine("The correct colors are:");
-                    for (int j = 0; j < PCArray.Length; j++)
-                    {
-                        Console.Write(PCArray[j] + " ");
-                    }
-                }
+                secret[i] = colorArray[rnd.Next(3)];
+                //secret[0] = "red";
+                //secret[1] = "blue";
             }
-            Console.ReadLine();
-        }
-        public static int GetRandomNumberCount(int numberCount)
-        {
-            int number = 0;
+
+            bool isGameOver = false;
+
+            // give user chances to guess
             do
             {
+                tryCount++;
+
                 try
                 {
-                    Console.Write("Choose two colors - Red, Yellow, Blue? ");
-                    number = int.Parse(Console.ReadLine());
+                    Console.Write("Enter your guess: (red, yellow, blue): ");
+                    string firstColor = Console.ReadLine().ToLower();
+                    string secondColor = Console.ReadLine().ToLower();
+                    //Console.WriteLine();
+
+                    // check input
+                    isGameOver = IsSolved(firstColor, secondColor);
+
+                    // check hints
+                    if (!isGameOver)
+                    {
+                        CheckHints(firstColor, secondColor);
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid input; please try again.");
                     Console.WriteLine();
                 }
-                catch
-                {
-                    Console.WriteLine("You must choose two colors - Red, Yellow, Blue. Choose again.");
-                    Console.WriteLine();
-                }
-            } while ((number < 4) || (number > 10));
+            } while (tryCount < 4 && !isGameOver);
 
-            return number;
+            Console.ReadLine();
         }
-        public static int[] GenerateRandomNumbers(int PCSize)
-        {
-            int eachNumber;
-            int[] randomNumber = new int[PCSize];
-            Random rnd = new Random();
 
-            for (int i = 0; i < randomNumber.Length; i++)
-            {
-                eachNumber = rnd.Next(1, 5);
-                randomNumber[i] = eachNumber;
-                Console.Write(eachNumber);
-            }
-            Console.WriteLine();
-            return randomNumber;
-        }
-        public static int[] GetUserGuess(int userSize)
+        static bool IsSolved(string firstColor, string secondColor)
         {
-            int number = 0;
-            int[] userGuess = new int[userSize];
-            for (int i = 0; i < userGuess.Length; i++)
+            if (secret[0] == firstColor && secret[1] == secondColor)
             {
-                Console.Write("Digit {0}: ", (i + 1));
-                number = int.Parse(Console.ReadLine());
-                userGuess[i] = number;
-                //Console.Write(number);
+                Console.WriteLine("You Won!!");
+                return true;
             }
-            Console.WriteLine();
-            Console.Write("Your guess: ");
-            for (int i = 0; i < userGuess.Length; i++)
-            {
-                Console.Write(userGuess[i] + " ");
-            }
-            Console.WriteLine();
-            return userGuess;
-        }
-        public static int CountHits(int[] PCArray, int[] userArray, int attempts)
-        {
-            int hit = 0;
-            int miss = 0;
-            int hits = 0;
 
-            for (int i = 0; i < PCArray.Length; i++)
-            {
-                if (PCArray[i] == userArray[i])
-                {
-                    hit = hit + 1;
-                    hits = hit;
-                }
-                else
-                {
-                    miss = miss + 1;
-                }
-            }
-            Console.WriteLine("Results: {0} Hit(s), {1} Miss(es)", hit, miss);
-            return hits;
+            return false;
         }
+
+        static void CheckHints(string firstColor, string secondColor)
+        {
+            int numberOfColorsFound = NumberOfColorsFound(firstColor, secondColor);
+            int numberOfColorsCorrectPosition = NumberOfColorsCorrectPosition(firstColor, secondColor);
+
+            Console.WriteLine(numberOfColorsFound + "-" + numberOfColorsCorrectPosition);
+        }
+
+        static int NumberOfColorsFound(string firstColor, string secondColor)
+        {
+            bool firstColorFound = secret.Contains(firstColor);
+            bool secondColorFound = secret.Contains(secondColor);
+
+            if (firstColorFound && !secondColorFound)
+            {
+                return 1;
+            }
+            else if (!firstColorFound && secondColorFound)
+            {
+                return 1;
+            }
+            else if (firstColorFound && secondColorFound)
+            {
+                return 2;
+            }
+
+            return 0;
+        }
+
+        static int NumberOfColorsCorrectPosition(string firstColor, string secondColor)
+        {
+            //bool firstColorCorrectPosition = secret[0] == firstColor;
+
+            bool firstColorCorrectPosition = false;
+            if (secret[0] == firstColor)
+            {
+                firstColorCorrectPosition = true;
+            }
+
+            bool secondColorCorrectPosition = false;
+            if (secret[1] == secondColor)
+            {
+                secondColorCorrectPosition = true;
+            }
+
+            if (firstColorCorrectPosition && !secondColorCorrectPosition)
+            {
+                return 1;
+            }
+            else if (!firstColorCorrectPosition && secondColorCorrectPosition)
+            {
+                return 1;
+            }
+
+            return 0;
+        }
+
     }
 }
