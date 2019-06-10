@@ -33,26 +33,28 @@ class DriverLicense
     {
         return (FirstName + " " + LastName);
     }
+}
 
-    class Book
+class Book
+{
+
+    public String Title { get; set; }
+    public String Author { get; set; }
+    public String Pages { get; set; }
+    public String SKU { get; set; }
+    public String Pubisher { get; set; }
+    public String Price { get; set; }
+
+    public Book(string title, string author, string pages, string bar_code, string publisher, string price)
     {
-
-        public String Title { get; set; }
-        public String Author { get; set; }
-        public String Pages { get; set; }
-        public String SKU { get; set; }
-        public String Pubisher { get; set; }
-        public String Price { get; set; }
-
-        public Book(string title, string author, string pages, string bar_code, string publisher, string price)
-        {
-            Title = title;
-            Author = author;
-            Pages = pages;
-            SKU = bar_code;
-            Pubisher = publisher;
-            Price = Price;
-        }
+        Title = title;
+        Author = author;
+        Pages = pages;
+        SKU = bar_code;
+        Pubisher = publisher;
+        Price = price;
+    }
+}
         class Airplane
         {
 
@@ -71,13 +73,4 @@ class DriverLicense
                 Engines = engines;
             }
         }
-    }
 
-    public static string Reverse(string s)
-    {
-        char[] charArray = s.ToCharArray();
-        Array.Reverse(charArray);
-        return new string(charArray);
-    }
-    Console.ReadLine();
-}
