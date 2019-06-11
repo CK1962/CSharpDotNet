@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperHeroes", "SuperHeroes.csproj", "{F7512C28-CD50-4BFC-9500-F683D1CD8B58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2D3DPoints", "2D3DPoints.csproj", "{79D38E59-A1F3-4F48-ABCC-A4B683323851}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7512C28-CD50-4BFC-9500-F683D1CD8B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7512C28-CD50-4BFC-9500-F683D1CD8B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7512C28-CD50-4BFC-9500-F683D1CD8B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7512C28-CD50-4BFC-9500-F683D1CD8B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D38E59-A1F3-4F48-ABCC-A4B683323851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D38E59-A1F3-4F48-ABCC-A4B683323851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D38E59-A1F3-4F48-ABCC-A4B683323851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D38E59-A1F3-4F48-ABCC-A4B683323851}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E618F6BA-15FA-4590-8F82-A36C2079E961}
+		SolutionGuid = {E947A5F4-906D-4C17-997C-4731BAC88508}
 	EndGlobalSection
 EndGlobal

@@ -4,22 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuperHeroes
+namespace _2D3DPoints
 {
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Point2D p = new Point2D();
-        }
-    }
     public class Point2D
     {
-        //public int X {get; set;}
         public Point2D()
         {
-           
+            // your code here
         }
 
         public Point2D(int x, int y)

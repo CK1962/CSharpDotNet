@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SuperHeroes")]
+[assembly: AssemblyTitle("2D3DPoints")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SuperHeroes")]
+[assembly: AssemblyProduct("2D3DPoints")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f7512c28-cd50-4bfc-9500-f683d1cd8b58")]
+[assembly: Guid("79d38e59-a1f3-4f48-abcc-a4b683323851")]
 
 // Version information for an assembly consists of the following four values:
 //
