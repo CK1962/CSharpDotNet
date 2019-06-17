@@ -10,45 +10,51 @@ namespace SuperHeroes
     {
         static void Main(string[] args)
         {
-            
+            Person william = new Person ("William", "Bill");
+            Person james = new Person ("James", "Jim");
+            Person wade = new Person("Wade Turner", "Wade");
+
+            Console.WriteLine("Hi, my name is {0}, you can call me {1}.", william.name, william.nickName);
+            Console.WriteLine("Hi, my name is {0}, you can call me {1}.", james.name, james.nickName);
+
+            SuperHero h1 = new SuperHero("Mr Incredible", "Super Strength");
         }
         public class Person
         {
-            public string name;
-            public string nickName;
+            public string name { get; set; }
+            public string nickName { get; set; }
 
             public Person(String iName, String iNickName)
             {
                 this.name = iName;
                 this.nickName = iNickName;
 
-                Console.WriteLine("Hi, my name is {0}, you can call me {1}.");
             }
         }
 
-        public class SuperHero
+        class SuperHero : Person
         {
-            public string realName;
+            public string heroName;
             public string superPower;
 
-            public SuperHero(String iName, String iRealName, String iSuperPower)
+            public SuperHero(String iName, String iHeroName, String iSuperPower)
             {
                 base.name = iName;
-                this.realName = iRealName;
+                this.heroName = iHeroName;
                 this.superPower = iSuperPower;
 
-                Console.WriteLine("I am {0}.  When I am {1}, my super power is {2}!");
+                Console.WriteLine("I am {0}.  When I am {1}, my super power is {2}!", wade.name, h1.heroName, h1.superPower);
             }
         }
 
-        class Villain
+        class Villain : Person
         {
         public string nemesis;
 
-            public Villain(String iNickName, String iNemesis)
+            public Villain(String iNemesis, String iHeroName)
             {
                 this.nemesis = iNemesis;
-
+               
                 Console.WriteLine("I am {0}!  Have you seen {1}?");
             }
         }
