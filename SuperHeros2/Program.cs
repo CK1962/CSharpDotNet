@@ -14,15 +14,15 @@ namespace SuperHeros2
             public string nickName;
             public void PrintGreeting()
             {
-                Console.WriteLine("Hi, my name is " + p1.name + "you can call me" + p1.nickName.);
+                Console.WriteLine("Hi, my name is " + name + ", you can call me" + nickName.);
             }
         }
         class SuperHero : Person
         {
             public string heroName;
-            public string superpower;
+            public string superpower;   
 
-            public void Hero()
+            public void PrintHero()
             {
                 Console.WriteLine("I am {0}. When I am {2}, my super power is {3}!");
             }
@@ -31,7 +31,7 @@ namespace SuperHeros2
         {
             public string nemesis;
 
-            public void Versus()
+            public void PrintVersus()
             {
                 Console.WriteLine("I am {5}! Have you seen {3}?");
             }
