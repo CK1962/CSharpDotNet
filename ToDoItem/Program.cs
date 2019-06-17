@@ -23,7 +23,7 @@ namespace ToDoItem
                 if (answer == "exit")
                 {
                     keepGoing = false;
-                    continue;
+                    break;
                 }
                 Console.WriteLine("Please give me the description: ");
                 string descriptionInput = Console.ReadLine();
