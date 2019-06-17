@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperHeroes
 {
@@ -10,55 +6,67 @@ namespace SuperHeroes
     {
         static void Main(string[] args)
         {
-            Person william = new Person ("William", "Bill");
-            Person james = new Person ("James", "Jim");
-            Person wade = new Person("Wade Turner", "Wade");
+            Person william = new Person("William Smith", "Bill");
+            william.PrintGreeting();
 
-            Console.WriteLine("Hi, my name is {0}, you can call me {1}.", william.name, william.nickName);
-            Console.WriteLine("Hi, my name is {0}, you can call me {1}.", james.name, james.nickName);
+            SuperHero wade = new SuperHero("Wade Turner", "Mr. Incredible", "super strength");
+            wade.PrintGreeting();
 
-            SuperHero h1 = new SuperHero("Mr Incredible", "Super Strength");
+            Villain joker = new Villain("Jack Napier", "The Joker", "Batman");
+            joker.PrintGreeting();
+
+            Console.ReadLine();
         }
+    }
 
-        public class Person
+    public class Person
+    {
+        public string Name { get; set; }
+        public string NickName { get; set; }
+
+        public Person(string name, string nickName)
         {
-            public string name { get; set; }
-            public string nickName { get; set; }
-
-            public Person(String iName, String iNickName)
-            {
-                this.name = iName;
-                this.nickName = iNickName;
-
-            }
+            Name = name;
+            NickName = nickName;
         }
 
-        class SuperHero : Person
+        public virtual void PrintGreeting()
         {
-            public string heroName;
-            public string superPower;
-
-            public SuperHero(String iName, String iHeroName, String iSuperPower)
-            {
-                base.name = iName;
-                this.heroName = iHeroName;
-                this.superPower = iSuperPower;
-
-                Console.WriteLine("I am {0}.  When I am {1}, my super power is {2}!", wade.name, h1.heroName, h1.superPower);
-            }
+            Console.WriteLine($"Hi, my name is {Name}, you can call me {NickName}.");
         }
+    }
 
-        class Villain : Person
+    public class SuperHero : Person
+    {
+        public string HeroName;
+        public string SuperPower;
+
+        public SuperHero(string name, string heroName, string superPower) : base(name, null)
         {
-        public string nemesis;
-
-            public Villain(String iNemesis, String iHeroName)
-            {
-                this.nemesis = iNemesis;
-               
-                Console.WriteLine("I am {0}!  Have you seen {1}?");
-            }
+            this.HeroName = heroName;
+            this.SuperPower = superPower;
         }
-            
+
+        public override void PrintGreeting()
+        {
+            Console.WriteLine($"My name is {base.Name}. When I am {HeroName}, my superpower is {SuperPower}.");
+        }
+    }
+
+    public class Villain : Person
+    {
+        public string VillainName;
+        public string Nemesis;
+
+        public Villain(string name, string villainName, string nemesis) : base(name, null)
+        {
+            this.VillainName = villainName;
+            this.Nemesis = nemesis;
+        }
+
+        public override void PrintGreeting()
+        {
+            Console.WriteLine($"I am {this.VillainName}!  Have you seen {this.Nemesis}?");
+        }
     }
 }
