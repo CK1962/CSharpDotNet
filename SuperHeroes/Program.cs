@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SuperHeroes
 {
@@ -6,14 +7,22 @@ namespace SuperHeroes
     {
         static void Main(string[] args)
         {
+            List<Person> humans = new List<Person>();
+
             Person william = new Person("William Smith", "Bill");
-            william.PrintGreeting();
+            humans.Add(william);
 
             SuperHero wade = new SuperHero("Wade Turner", "Mr. Incredible", "super strength");
-            wade.PrintGreeting();
+            humans.Add(wade);
 
             Villain joker = new Villain("Jack Napier", "The Joker", "Batman");
-            joker.PrintGreeting();
+            humans.Add(joker);
+
+            foreach (Person human in humans)
+            {
+                Console.Write($"{human.Name}: ");
+                human.PrintGreeting();
+            }
 
             Console.ReadLine();
         }
