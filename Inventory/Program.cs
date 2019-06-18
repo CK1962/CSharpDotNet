@@ -10,49 +10,89 @@ namespace Inventory
     {
         static void Main(string[] args)
         {
-           
-            Car c1 = new Car();
-            c1.licensePlate = "XYZ987A";
-            c1.make = "Ford";
-            c1.model = "Camry";
-            c1.price = "$26,000";
-            c1.type = "Compact";
-            c1.numberOfDoors = 2;
+            List<IRentable> rentables = new List<IRentable>();
 
-            cl1.AddVehicle(c1);
+            Car r1 = new Car("car");
+            rentables.Add(r1);
 
-            cl1.PrintInventory();
+            Boat r2 = new Boat("boat");
+            rentables.Add(r2);
 
+            House r3 = new House("house");
+            rentables.Add(r3);
 
+            foreach(IRentable r in rentables)
+            {
+                Console.WriteLine(r.GetDescription());
+                Console.WriteLine(r.GetDailyRate());
+                Console.WriteLine(r.GetType());
+            }
+            
+
+            Console.ReadLine();
         }
-
-        public List<IRentable> rentables = new List<IRentable>();
     }
 
-    public interface IRentable
+    interface IRentable
     {
-        public GetDailyRate()
-        {
-            return "";
-        }
-        public GetDescription()
-        {
-            return "";
-        }
+        decimal GetDailyRate();
+        string GetDescription();
     }
 
     public class Boat : IRentable
     {
-        public string hourlyRate;
+        private decimal _hourlyRate = 12.5m;
+        private string _description { get; set; }
+        public Boat(string description)
+        {
+            _description = description;
+        }
+
+        public decimal GetDailyRate()
+        {
+            return Decimal.Round( _hourlyRate * 24, 2);
+        }
+
+        public string GetDescription()
+        {
+            return _description;
+        }
     }
 
     public class House : IRentable
     {
-        public string weeklyRate;
-    }
+        private decimal _weeklyRate = 510.5m;
+        public string _description { get; set; }
+        public House(string description)
+        {
+            _description = description;
+        }
 
+        public decimal GetDailyRate()
+        {
+            return Decimal.Round(_weeklyRate / 7, 2);
+        }
+        public string GetDescription()
+        {
+            return _description;
+        }
+    }
     public class Car : IRentable
     {
-        public string dailyRate;
+        private decimal _dailyRate = 35.5m;
+        public string _description { get; set; }
+        public Car(string description)
+        {
+            _description = description;
+        }
+
+        public decimal GetDailyRate()
+        {
+            return Decimal.Round(_dailyRate, 2);
+        }
+        public string GetDescription()
+        {
+            return _description;
+        }
     }
 }
