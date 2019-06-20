@@ -5,16 +5,16 @@ using System.Globalization;
 namespace Checkers
 {
     public struct Position
-    { 
+    {
         public int Row { get; private set; }
         public int Col { get; private set; }
         public Position(int row, int col)
-        { 
+        {
             this.Row = row;
             this.Col = col;
         }
     }
-    
+
 
     public enum Color { White, Black }
 
@@ -33,13 +33,13 @@ namespace Checkers
             {
                 int closedCircleId = int.Parse("25CF", NumberStyles.HexNumber);
                 Symbol = char.ConvertFromUtf32(closedCircleId);
-                Symbol = "x";
+                Symbol = "X";
             }
             else
             {
                 int openCircleId = int.Parse("25CB", NumberStyles.HexNumber);
                 Symbol = char.ConvertFromUtf32(openCircleId);
-                Symbol = "o";
+                Symbol = "O";
             }
         }
 
@@ -67,12 +67,12 @@ namespace Checkers
             }
         }
 
-        public Checker GetChecker(Position pos)
+        public Checker GetChecker(Position src)
         {
-            foreach(Checker c in Checkers)
+            foreach (Checker c in Checkers)
             {
-                if(c.Position.Row == pos.Row &&
-                    c.Position.Col == pos.Col)
+                if (c.Position.Row == src.Row &&
+                    c.Position.Col == src.Col)
                 {
                     return c;
                 }
@@ -83,20 +83,26 @@ namespace Checkers
 
         public void RemoveChecker(Checker checker)
         {
-            Checkers.Remove(checker);
+            if (Checker 1= null);
+                {
+                Checkers.Remove(checker);
+            }
         }
 
         public void MoveChecker(Checker checker, Position dest)
         {
-            checker.Position = dest;
+            Checker c= new Checker(checker.Team, dest.Row, dest.Col)
+            { 
+            Checkers.Add(c);
+            RemoveChecker(checker);
         }
 
         public bool CheckForWin()
         {
             bool blackWon = true;
             bool whiteWon = true;
-            
-            foreach(Checker c in Checkers)
+
+            foreach (Checker c in Checkers)
             {
                 if (c.Team == Color.White)
                 {
@@ -139,28 +145,98 @@ namespace Checkers
 
         public bool IsLegalMove(Color player, Position src, Position dest)
         {
-            // ...       
+            //Rule one
+            if (src.Row < 0 || src.Row > 7 || src.Col < 0 || src.Col > 7
+                || dest.Row < 0 || dest.Row > 7 || dest.Col < 0
+                || dest.Col > 7) return false;
+
+            //Rule two
+            int rowDistance = Math.Abs(dest.Row - src.Row);
+            int colDistance = Math.Abs(dest.Col - src.Col);
+
+            if (colDistance == 0 || rowDistance == 0) return false;
+            if (rowDistance / colDistance != 1) return false;
+
+            //Rule three
+            if (rowDistance > 2) return false;
+
+            //Rule four
+            Checker c = board.GetChecker(src);
+            if (c == null)
+            {
+                return false;
+            }
+            c = board.GetChecker(dest);
+            if (c != null)
+            {
+                return false;
+            }
+
+
+            //Rule five
+            if (rowDistance ==2)
+            { 
+                if (IsCapture(player, src, dest))
+                {
+                return true;
+                }
+                else
+                {
+                return false;
+                }       
+                else
+                {
+                return true;
+                }  
+            }       
+        }
+    public bool IsCapture(Color player, Position src, Position dest)
+        {
+            int rowDistance = Math.Abs(dest.Row - src.Row);
+            int colDistance = Math.Abs(dest.Col - src.Col);
+            if (rowDistance == 2 && colDistance ==2)
+            {
+                int row_mid = (dest.Row + src.Row) / 2;
+                int col_mid = (dest.Col + src.Col) / 2;
+                Position p = new Position(row_mid, col_mid);
+                c = board.GetChecker(p);
+                if (c == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    if (c.Team == player)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
 
             return false;
         }
 
-        public bool IsCapture(Position src, Position dest)
+        public Checker GetCaptureChecker(Color player, Position src, Position dest)
         {
-            // ...
-
-            return false;
-        }
-
-        public Checker GetCaptureChecker(Position src, Position dest)
-        {
-            // ..
+            if (IsCapture(player, src, dest))
+            {
+                int row_mid = (dest.Row + src.Row) / 2;
+                int col_mid = (dest.Col + src.Col) / 2;
+                Position p = new Postition(row_mid, col_mid);
+                Checker c = board.GetChecker(p);
+                return c;
+            }
 
             return null;
         }
 
         public Position ProcessInput()
         {
-            // ...
+            Console.WriteLine
 
             return new Position();
         }
