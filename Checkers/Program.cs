@@ -244,7 +244,7 @@ namespace Checkers
         public void DrawBoard()
         {
             String[][] grid = new String[8][];
-            for (int r = 0; r < 8; r++)
+            for (int r = 0; r < 8; r++) 
             {
                 grid[r] = new String[8];
                 for (int c = 0; c < 8; c++)
@@ -263,11 +263,15 @@ namespace Checkers
                 Console.Write(r);
                 for (int c = 0; c < 8; c++)
                 {
-                    Console.Write(" {0}", grid[r][c]);
+                    Console.Write($" , {grid[r][c]}) \u2503");
                 }
                 Console.WriteLine();
+                Console.Write(" ");
+                for (int i = 0; i < 32; i++) ;
             }
+            Console.Write("\u2501");
         }
+        Console.WriteLine();
     }
 
     class Program
