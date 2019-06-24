@@ -14,8 +14,11 @@ namespace Checkers
             // the black disk and the white circle correctly
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Game game = new Game();
-            game.Start();
+            Game newGame = new Game();
+
+            newGame.Start();
+
+            Console.ReadKey();
 
         }
     }
@@ -116,14 +119,10 @@ namespace Checkers
         public void Start()
         {
             DrawBoard();
-
-            do
+            while (!CheckForWin());
             {
                 ProcessInput();
-                DrawBoard();
             }
-            while (!CheckForWin());
-
 
             Console.WriteLine("You won!");
             Console.WriteLine("Press any key to exit.");
@@ -247,34 +246,36 @@ namespace Checkers
             ///TODO: Now you have all building blocks, it is your turn to put them together
             ///
             //1. Get the checker at the source position:
-            
-            // hint: use GetChecker function
+            Checker PlayerChecker = board.GetChecker(from);
 
             //2. If there is no checker at the source position
-            // notify the user of the error, then stop
+            if (PlayerChecker == null)
+            {
+                Console.WriteLine("There is no checker there, try again");
+                return;
+            }
+
+            else
+            {
+                If(this.IsLegalMove(PlayerChecker.Team, from, to));
+                {
+                    If(this.IsCapture(from, to));
+                    {
+                        Checker captureChecker = this.GetCaptureChecker(from, to);
+                        board.RemoveChecker(capturedChecker);
+                    }
+
+                    board.MoveChecker(PlayerChecker, to);
 
 
-            //3. If there is a checker at the source position
-            // then check if the move from the source position to the destination position
-            // is a legal move
-            // 
-            // 3.1. 
-            // If (this is a legal move)
-            // {
-            //    Move the checker to the destination position
-            //    If (this is also a capture move)
-            //    {
-            //       Find the checker that will be captured
-            //       Remove the captured checker from the board
-            //    }
-            //  }
-            //  else (this is not a legal move)
-            //  {
-            //      Notify the user of the error and then stop
-            //  }
-
+                    else
+                    {
+                        Console.WriteLine("Invalid move.  Double check the source position.");
+                    }
+                }
+            }
             // Re-draw the board after each move
-
+            DrawBoard();
 
         }
 
