@@ -1,0 +1,103 @@
+﻿Microsoft Windows [Version 10.0.17134.765]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\cryst>cd SQLite>sqlite3 LCA
+The system cannot find the path specified.
+
+C:\Users\cryst>cd c: \SQLite
+The system cannot find the path specified.
+
+C:\Users\cryst>cd c:\SQLite
+
+c:\SQLite>sqlite3 LCA
+SQLite version 3.27.2 2019-02-25 16:06:06
+Enter ".help" for usage hints.
+sqlite> CREATE TABLE books (
+   ...> id int,
+   ...> title varchar(20),
+   ...> author varchar(20)
+   ...> );
+sqlite> INSERT INTO books (id, title, author) VALUES
+   ...> (1, 'The Hobbit', 'Tolkien');
+sqlite> INSERT INTO books (id, title, author) VALUES
+   ...> (2, 'The Cat in the Hat', 'Dr. Seuss');
+sqlite> INSERT INTO books (id, title, author) VALUES
+   ...> (3, 'Tom Sawyer', 'Mark Twain');
+sqlite> SELECT * FROM books;
+1|The Hobbit|Tolkien
+2|The Cat in the Hat|Dr. Seuss
+3|Tom Sawyer|Mark Twain
+sqlite> SELECT * FROM books where id=2;
+2|The Cat in the Hat|Dr. Seuss
+sqlite> SELECT * FROM books where title like 't%';
+1|The Hobbit|Tolkien
+2|The Cat in the Hat|Dr. Seuss
+3|Tom Sawyer|Mark Twain
+sqlite> UPDATE books SET title='THE CAT IN THE HAT' where id =2;
+sqlite> SELECT * FROM books;
+1|The Hobbit|Tolkien
+2|THE CAT IN THE HAT|Dr. Seuss
+3|Tom Sawyer|Mark Twain
+sqlite> DELETE FROM books where id =1;
+sqlite> SELECT *FROM books;
+2|THE CAT IN THE HAT|Dr. Seuss
+3|Tom Sawyer|Mark Twain
+sqlite> Microsoft Windows [Version 10.0.17134.765]
+   ...> (c) 2018 Microsoft Corporation. All rights reserved.
+   ...>
+   ...> C:\Users\cryst>cd SQLite>sqlite3 LCA
+   ...> The system cannot find the path specified.
+   ...>
+   ...> C:\Users\cryst>cd c: \SQLite
+   ...> The system cannot find the path specified.
+   ...>
+   ...> C:\Users\cryst>cd c:\SQLite
+   ...>
+   ...> c:\SQLite>sqlite3 LCA
+   ...> SQLite version 3.27.2 2019-02-25 16:06:06
+   ...> Enter ".help" for usage hints.
+   ...> sqlite> CREATE TABLE books (
+   ...>    ...> id int,
+   ...>    ...> title varchar(20),
+   ...>    ...> author varchar(20)
+   ...>    ...> );
+Error: near "Microsoft": syntax error
+sqlite> sqlite> INSERT INTO books (id, title, author) VALUES
+   ...>    ...> (1, 'The Hobbit', 'Tolkien');
+Error: near "sqlite": syntax error
+sqlite> sqlite> INSERT INTO books (id, title, author) VALUES
+   ...>    ...> (2, 'The Cat in the Hat', 'Dr. Seuss');
+Error: near "sqlite": syntax error
+sqlite> sqlite> INSERT INTO books (id, title, author) VALUES
+   ...>    ...> (3, 'Tom Sawyer', 'Mark Twain');
+Error: near "sqlite": syntax error
+sqlite> sqlite> SELECT * FROM books;
+Error: near "sqlite": syntax error
+sqlite> 1|The Hobbit|Tolkien
+   ...> 2|The Cat in the Hat|Dr. Seuss
+   ...> 3|Tom Sawyer|Mark Twain
+   ...> sqlite> SELECT * FROM books where id=2;
+Error: near "1": syntax error
+sqlite> 2|The Cat in the Hat|Dr. Seuss
+   ...> sqlite> SELECT * FROM books where title like 't%';
+Error: near "2": syntax error
+sqlite> 1|The Hobbit|Tolkien
+   ...> 2|The Cat in the Hat|Dr. Seuss
+   ...> 3|Tom Sawyer|Mark Twain
+   ...> sqlite> UPDATE books SET title='THE CAT IN THE HAT' where id =2;
+Error: near "1": syntax error
+sqlite> sqlite> SELECT * FROM books;
+Error: near "sqlite": syntax error
+sqlite> 1|The Hobbit|Tolkien
+   ...> 2|THE CAT IN THE HAT|Dr. Seuss
+   ...> 3|Tom Sawyer|Mark Twain
+   ...> sqlite> DELETE FROM books where id =1;
+Error: near "1": syntax error
+sqlite> sqlite> SELECT *FROM books;
+Error: near "sqlite": syntax error
+sqlite> 2|THE CAT IN THE HAT|Dr. Seuss
+   ...> 3|Tom Sawyer|Mark Twain
+   ...> sqlite>
+Error: near "2": syntax error
+
+c:\SQLite>
