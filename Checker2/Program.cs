@@ -19,7 +19,6 @@ namespace Checkers
             newGame.Start();
 
             Console.ReadKey();
-
         }
     }
 
@@ -59,7 +58,6 @@ namespace Checkers
                 for (int i = 0; i < 8; i += 2)
                 {
                     // the first three rows are for White checkers (row = 0,1,2)
-
                     Checker c = new Checker(Color.White, r, (r + 1) % 2 + i);
                     checkers.Add(c);
                 }
@@ -73,10 +71,8 @@ namespace Checkers
             }
         }
 
-
         public Checker GetChecker(Position source)
         {
-            
             foreach (Checker c in checkers)
             {
                 if (c.Position.Row == source.Row && c.Position.Column == source.Column)
@@ -215,7 +211,6 @@ namespace Checkers
 
         public Checker GetCaptureChecker(Position source, Position destination)
         {
-            // ..
             if (IsCapture(source, destination))
             {
                 int row_mid = (destination.Row + source.Row) / 2;
@@ -225,7 +220,6 @@ namespace Checkers
                 return c;
             }
             return null;
-
         }
 
         public void ProcessInput()
@@ -243,8 +237,6 @@ namespace Checkers
             Position from = new Position(int.Parse(src[0]), int.Parse(src[1]));
             Position to = new Position(int.Parse(dest[0]), int.Parse(dest[1]));
 
-            ///TODO: Now you have all building blocks, it is your turn to put them together
-            ///
             //1. Get the checker at the source position:
             Checker PlayerChecker = board.GetChecker(from);
 
@@ -257,26 +249,26 @@ namespace Checkers
 
             else
             {
-                If(this.IsLegalMove(PlayerChecker.Team, from, to));
+                if(this.IsLegalMove(PlayerChecker.Team, from, to))
                 {
-                    If(this.IsCapture(from, to));
+                    if (this.IsCapture(from, to)) ;
                     {
                         Checker captureChecker = this.GetCaptureChecker(from, to);
-                        board.RemoveChecker(capturedChecker);
+                        board.RemoveChecker(captureChecker);
                     }
 
                     board.MoveChecker(PlayerChecker, to);
-
-
-                    else
-                    {
-                        Console.WriteLine("Invalid move.  Double check the source position.");
-                    }
                 }
-            }
-            // Re-draw the board after each move
-            DrawBoard();
 
+                else
+                    {
+                        Console.WriteLine("This move is not valid, please try again.");
+                        return;
+                    }
+                
+            // Re-draw the board after each move
+            }
+            DrawBoard();
         }
 
         public void DrawBoard()
