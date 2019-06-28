@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 
-namespace Student
+namespace Book
 {
     class BookContext : DbContext
     {
@@ -21,7 +21,7 @@ namespace Student
             DirectoryInfo ProjectBase = ExeDirectory.Parent.Parent.Parent;
 
             // add 'students.db' to the project directory
-            String DbFile = Path.Combine(ProjectBase.Title, "book.db");
+            String DbFile = Path.Combine(ProjectBase.FullName, "book.db");
 
             // to check what the path of the file is, uncomment the file below
             Console.WriteLine("using database file :" + DbFile);

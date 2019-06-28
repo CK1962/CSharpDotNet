@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Book
 {
-    class Book
+    public class Book
     {
         // notice the private set on the id
         public int Id { get; private set; }
