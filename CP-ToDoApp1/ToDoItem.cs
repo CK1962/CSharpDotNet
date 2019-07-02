@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CP_ToDoApp1
+﻿namespace CP_ToDoApp1
 {
-    class ToDoItem
+    public class ToDoItem
     {
+        public long Id { get; set; }
+        public string Description { get; set; }
+        public bool IsDone { get; set; }
+
+        public ToDoItem(string description)
+        {
+            Description = description;
+        }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-
-namespace CP_ToDoApp1
+﻿namespace CP_ToDoApp1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var app = new App();
+            app.Start();
         }
-
     }
-    public class App
 }
